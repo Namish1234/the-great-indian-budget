@@ -1,26 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
+
+.font-valorant {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* --- 1. GLOBAL SCROLLBAR THEME (The Fix) --- */
+/* This targets the main browser window scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505; 
+  border-left: 1px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626; 
+  border: 1px solid #000;
+  border-radius: 0; /* Sharp corners for tactical look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f43f5e; /* Radical Red on hover */
+}
+
+/* Fallback for Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #262626 #050505;
+}
+
+/* Specific class if needed for internal elements to override width */
+.scrollbar-custom::-webkit-scrollbar { 
+  width: 4px; /* Thinner for internal lists */
+}
+
+/* --- 2. TICKER ANIMATIONS --- */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes ticker-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+}
+
+.animate-ticker-reverse {
+  display: flex;
+  width: max-content;
+  animation: ticker-reverse 40s linear infinite;
+}
+
+.animate-ticker:hover, 
+.animate-ticker-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* 3. UTILITY ANIMATIONS */
+@keyframes float {
+  0% { transform: translateY(0px) translateZ(0); }
+  50% { transform: translateY(-10px) translateZ(20px); }
+  100% { transform: translateY(0px) translateZ(0); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
