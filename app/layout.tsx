@@ -5,7 +5,11 @@ export const metadata = {
   description: 'Institutional Grade Budget Analytics',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-black text-white antialiased">
